@@ -133,8 +133,7 @@ local function SetupTableSeats(tableModel)
 	seat2:GetPropertyChangedSignal("Occupant"):Connect(checkSeats)
 end
 
--- Processes ship placement requests from clients
-placeShipsEvent.OnServerEvent:Connect(function(player, clientPlacedShips)
+placeShipsEvent.OnServerEvent:Connect(function(player, clientPlacedShips) -- this gets the placed ships from the client and puts them on the board of the player
 	local char = player.Character
 	if not char or not char:FindFirstChild("Humanoid") then return end
 
@@ -210,7 +209,7 @@ attackEvent.OnServerEvent:Connect(function(player, tileB) -- this is when a butt
 
 				
 				if profile then
-					AnimId = profile.Data.EquippedAnimation[1] -- if player has an equipped animation then we use his instead we keep the one thats already been referenced
+					AnimId = profile.Data.EquippedAnimation[1] -- if player has an equipped animation then we use his else, we keep the one thats already been referenced
 				end
 				
 				local loserProfile = ProfileManager.Profiles[defender]
@@ -222,7 +221,7 @@ attackEvent.OnServerEvent:Connect(function(player, tileB) -- this is when a butt
 				end
 				
 				if profile.Data.currentStreak > profile.Data.leaderstats.Streak then
-					profile.Data.leaderstats.Streak = profile.Data.currentStreak -- Streak is actually your highest streaj and this checks if the current streak is higher than your highest streak if it is then we update the streak number to be the current streak
+					profile.Data.leaderstats.Streak = profile.Data.currentStreak -- Streak is actually your highest streak and this checks if the current streak is higher than your highest streak if it is then we update the streak number to be the current streak
 				end
 				
 				local nametag = player.Character.Head:FindFirstChild("Nametag") -- every player gets a nametag that also has a nametag text to showcase their current streak
@@ -270,7 +269,7 @@ attackEvent.OnServerEvent:Connect(function(player, tileB) -- this is when a butt
 				return -- and exit the function since the match is finished
 			end
 		else
-			infoEvent:FireClient(player, "X", tileB) -- this is the else statement for the if the ship's health is smaller than 0 cause if it is then it means you just hit the ship but didnt sunk it
+			infoEvent:FireClient(player, "X", tileB) -- this is the else statement for if the ship's health is smaller than 0 cause if it is then it means you just hit the ship but didnt sunk it
 			infoEvent:FireClient(defender, "DEFENDER_HIT", tileB)
 		end
 	else
