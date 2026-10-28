@@ -1,3 +1,5 @@
+-- Connected Discord-Github
+
 --[[ This Script is for a Battleship game that uses a board gui that has a 6x5 grid and each buttons has its own tile id that is written in : X_Y. 
 Theres also a gui that gives you the ships to choose from and places the ships in the gird giving the clientplacedships array which you will see in the PlaceShipsEvent.]]
   
